@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  mysqlsrv:
+    container_name: gitapiDatabase
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: "apigit"
+      MYSQL_DATABASE: "apigit"
+    ports:
+      - "3306:3306"
+    volumes:
+      - /home/henrique/Desenvolvimento/Docker/Volumes/MySql:/var/lib/mysql
+    networks:
+      - mysql-compose-network
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - mysql-compose-network
+
+networks:
+  mysql-compose-network:
+    driver: bridge
