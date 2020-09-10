@@ -40,8 +40,10 @@ Route::group(['middleware' => ['jwt.auth']], function () {
             Route::delete('deleteTag/{id}', 'TagController@deleteTag')->name('deleteTag');
         });
 
-        Route::name('users')->group(function () {
-            Route::resource('users', 'UserController');
+        Route::prefix('user')->group(function () {
+            Route::post('createUser', 'UserController@createUser')->name('createUser');
+            Route::get('listUser', 'UserController@listUser')->name('listUser');
+            Route::put('updateUser/{id}', 'UserController@updateUser')->name('updateUser');
         });
     });
 });
