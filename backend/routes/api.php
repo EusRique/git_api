@@ -38,6 +38,7 @@ Route::group(['middleware' => ['jwt.auth']], function () {
             Route::post('createTag', 'TagController@createTag')->name('createTag');
             Route::get('listTag', 'TagController@listTag')->name('listTag');
             Route::delete('deleteTag/{id}', 'TagController@deleteTag')->name('deleteTag');
+            Route::patch('updateTag/{id}', 'TagController@updateTag')->name('updateTag');
         });
 
         Route::prefix('user')->group(function () {

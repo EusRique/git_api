@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Tag\TagCreateProcessor;
 use App\Services\Tag\TagDeleteProcessor;
 use App\Services\Tag\TagListProcessor;
+use App\Services\Tag\TagUpdateProcessor;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -31,6 +32,14 @@ class TagController extends Controller
     {
         $deleteTag = new TagDeleteProcessor(request()->route()->parameters, $tag);
         $response = $deleteTag->process();
+
+        return $response;
+    }
+
+    public function updateTag(Request $request, $id, Tag $tag)
+    {
+        $updateTag = new TagUpdateProcessor($request->all(), request()->route()->parameters, $tag);
+        $response = $updateTag->process();
 
         return $response;
     }
