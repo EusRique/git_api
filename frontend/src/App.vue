@@ -2,6 +2,7 @@
 	<div id="app" :class="{'hide-menu': !isMenuVisible}">
 		<Header title="Skyfall" 
 			:hideToggle="false"
+			:hideUserDropdown="false"
 		/>
 		<Menu></Menu>
 		<Content></Content>
