@@ -25,10 +25,7 @@ class TagUpdateProcessor
 
     public function process(): object
     {
-        if (!$this->requestData['token_git']
-            || !$this->requestData['tag_name']
-            || !$this->requestData['body'])
-        {
+        if (!$this->requestData['tag_name'] || !$this->requestData['body']) {
             $message = new ApiMessages('Ops, verifique os campos obrigatórios!!!');
 
             return response()->json($message->getMessage(), 401);
@@ -68,7 +65,7 @@ class TagUpdateProcessor
 
         $client = new Client();
         $response = $client->patch($urlRepository, [
-            'auth' => [$repositorie['owner'], $this->requestData['token_git']],
+            'auth' => [$repositorie['owner'], $repositorie['token_git']],
             'json' => [
                 'tag_name' => $this->requestData['tag_name'],
                 'body' => $this->requestData['body'],

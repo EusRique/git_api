@@ -58,7 +58,7 @@ class TagDeleteProcessor
 
         $client = new Client();
         $response = $client->delete($urlRepository, [
-            'auth' => ['USER_GIT', 'TOKEN_GIT'],
+            'auth' => [$repositorie['owner'], $repositorie['token_git']],
         ]);
 
         if ($response->getStatusCode() == 204) {

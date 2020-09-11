@@ -20,11 +20,8 @@ $router->get('/', function () use ($router) {
 
 Route::namespace ('Api')->middleware(['api'])->group(function ($router) {
     Route::post('login', 'AuthController@login');
-
     Route::post('logout', 'AuthController@logout');
-
     Route::post('refresh', 'AuthController@refresh');
-
     Route::get('me', 'AuthController@me');
 });
 
@@ -42,9 +39,14 @@ Route::group(['middleware' => ['jwt.auth']], function () {
         });
 
         Route::prefix('user')->group(function () {
-            Route::post('createUser', 'UserController@createUser')->name('createUser');
             Route::get('listUser', 'UserController@listUser')->name('listUser');
             Route::put('updateUser/{id}', 'UserController@updateUser')->name('updateUser');
         });
+    });
+});
+
+Route::namespace ('Api')->group(function () {
+    Route::prefix('user')->group(function () {
+        Route::post('createUser', 'UserController@createUser')->name('createUser');
     });
 });
