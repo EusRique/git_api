@@ -15,15 +15,8 @@ class TagListProcessor
 
     public function process(): object
     {
-        $listTags = $this->listTag();
+        $listTag = auth('api')->user()->tag();
 
-        return $listTags;
-    }
-
-    private function listTag(): object
-    {
-        $listTags = $this->tag->paginate('10');
-
-        return $listTags;
+        return response()->json($listTag->paginate(10), 200);
     }
 }

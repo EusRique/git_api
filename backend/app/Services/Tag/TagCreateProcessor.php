@@ -32,6 +32,7 @@ class TagCreateProcessor
         }
 
         try {
+
             $owner = $this->requestData['owner'];
             $repositorie = $this->requestData['repo'];
             $urlRepository = self::REPOSITORIE_BASE_TAG . $owner . '/' . $repositorie;
@@ -52,7 +53,6 @@ class TagCreateProcessor
             return response()->json(['message' => 'Tag cadastrada com sucesso'], 200);
 
         } catch (\Exception $e) {
-
             return response()->json([
                 'message' => 'Ops, Já existe uma tag com esse nome!!!',
             ], 400);
@@ -96,8 +96,11 @@ class TagCreateProcessor
 
     private function treatTag(array $tag, Repository $repositorie): void
     {
+        $userID = auth('api')->user()->id;
+
         $tagData = [
             'repository_id' => $repositorie['id'],
+            'user_id' => $userID,
             'id_tag_repository' => $tag['id'],
             'tag_name' => $tag['tag_name'],
             'target_commitish' => $tag['target_commitish'],

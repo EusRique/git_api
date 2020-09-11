@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
  * @property integer $id
  * @property integer $repository_id
+ * @property integer $user_id
  * @property integer $id_tag_repository
  * @property string $tag_name
  * @property string $target_commitish
@@ -22,6 +23,7 @@ class Tag extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'repository_id',
+        'user_id',
         'id_tag_repository',
         'tag_name',
         'target_commitish',

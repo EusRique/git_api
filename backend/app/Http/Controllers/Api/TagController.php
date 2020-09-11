@@ -17,7 +17,7 @@ class TagController extends Controller
         $listTag = new TagListProcessor($tag);
         $response = $listTag->process();
 
-        return response()->json($response);
+        return $response;
     }
 
     public function createTag(Request $request)

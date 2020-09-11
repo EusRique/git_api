@@ -14,15 +14,18 @@ class CreateTableTag extends Migration
     public function up()
     {
         Schema::create('tag', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('repository_id');
-            $table->string('id_tag_repository');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('repository_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('id_tag_repository');
+
             $table->string('tag_name');
             $table->string('target_commitish')->nullable();
             $table->string('login');
             $table->text('body');
             $table->timestamps();
 
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('repository_id')->references('id')->on('repository');
         });
     }

@@ -14,8 +14,9 @@ class CreateTableRepository extends Migration
     public function up()
     {
         Schema::create('repository', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('id_repository');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_repository');
+
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('language')->nullable();
