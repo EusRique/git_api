@@ -1,5 +1,6 @@
 import Vue from 'vue'
 
+export const userKey = '__api_git'
 export const baseApiUrl = 'http://localhost:8000/api'
 
 export function showError(e) {
@@ -12,4 +13,4 @@ export function showError(e) {
     }
 }
 
-export default { baseApiUrl, showError }
+export default { baseApiUrl, showError, userKey }

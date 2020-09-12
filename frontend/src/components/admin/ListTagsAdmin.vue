@@ -127,6 +127,7 @@ export default {
         this.tags = response.data.data;
         this.loading = false
       } catch (error) {
+        this.loading = false
         // eslint-disable-next-line no-console
         console.error(error);
       }
