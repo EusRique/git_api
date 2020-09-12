@@ -7,6 +7,12 @@
           <b-tab title="Usuários" active>
             <UserAdmin />
           </b-tab>
+          <b-tab title="Tags">
+            <TagAdmin />
+          </b-tab>
+          <b-tab title="Lista de Tags">
+            <ListTagsAdmin />
+          </b-tab>
         </b-tabs>
       </b-card>
     </div>
@@ -16,10 +22,12 @@
 <script>
 import PageTitle from "../templates/PageTitle";
 import UserAdmin from './UserAdmin'
+import TagAdmin from './TagAdmin'
+import ListTagsAdmin from './ListTagsAdmin'
 
 export default {
   name: "AdminPages",
-  components: { PageTitle, UserAdmin },
+  components: { PageTitle, UserAdmin, TagAdmin, ListTagsAdmin },
 };
 </script>
 

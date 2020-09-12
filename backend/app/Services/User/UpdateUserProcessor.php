@@ -38,7 +38,7 @@ class UpdateUserProcessor
         } catch (\Exception $e) {
             $message = new ApiMessages($e->getMessage());
 
-            return response()->json(['message' => 'Ops, algo deu errado, verifique todos os campos obrigatórios!'], 401);
+            return response()->json(['message' => 'Ops, algo deu errado, verifique todos os campos obrigatórios!'], 400);
         }
     }
 }

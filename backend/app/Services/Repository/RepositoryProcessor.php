@@ -42,17 +42,11 @@ class RepositoryProcessor
             $repositories = json_decode($repositories->getBody());
             $repositories = $this->treatRepositories($repositories);
 
-            if (empty($repositories)) {
-                $message = new ApiMessages('Ops, Repositório não encontrado!!!');
-
-                return response()->json($message->getMessage(), 400);
-            }
-
             return response()->json($repositories, 200);
 
         } catch (\Exception $e) {
 
-            return response()->json(['message' => 'Ops, Repositório não encontrado!!!'], 400);
+            return response()->json(['message' => 'Ops, Repositório não encontrado!!!'], 404);
         }
     }
 

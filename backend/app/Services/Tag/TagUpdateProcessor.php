@@ -28,7 +28,7 @@ class TagUpdateProcessor
         if (!$this->requestData['tag_name'] || !$this->requestData['body']) {
             $message = new ApiMessages('Ops, verifique os campos obrigatórios!!!');
 
-            return response()->json($message->getMessage(), 401);
+            return response()->json($message->getMessage(), 400);
         }
 
         try {
@@ -40,7 +40,7 @@ class TagUpdateProcessor
             if (empty($tag)) {
                 $message = new ApiMessages('Ops, nenhum registro encontrado!!!');
 
-                return response()->json($message->getMessage(), 401);
+                return response()->json($message->getMessage(), 200);
             }
 
             $repositorie = Repository::where('id', $tag['repository_id'])
@@ -55,7 +55,7 @@ class TagUpdateProcessor
 
             return response()->json([
                 'message' => 'Ops, Algo deu errado tente novamente mais tarde!!!',
-            ], 400);
+            ], 500);
         }
     }
 

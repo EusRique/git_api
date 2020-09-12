@@ -28,7 +28,7 @@ class TagCreateProcessor
         {
             $message = new ApiMessages('Ops, verifique os campos obrigatórios!!!');
 
-            return response()->json($message->getMessage(), 401);
+            return response()->json($message->getMessage(), 400);
         }
 
         try {
@@ -50,11 +50,16 @@ class TagCreateProcessor
 
             $this->createTagGit($repositorieData);
 
-            return response()->json(['message' => 'Tag cadastrada com sucesso'], 200);
+            return response()->json([
+                'data' => [
+                    'msg' => 'Tag cadastrada com sucesso!!!',
+                ],
+            ], 200);
 
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Ops, Já existe uma tag com esse nome!!!',
+                'message' => 'Ops, Algo deu errado, verifique se todas as informações estão corretas e
+                se já existe uma tag com esse nome!!!',
             ], 400);
         }
     }

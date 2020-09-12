@@ -32,7 +32,7 @@ class TagDeleteProcessor
             if (empty($tag)) {
                 $message = new ApiMessages('Ops, nenhum registro encontrado!!!');
 
-                return response()->json($message->getMessage(), 401);
+                return response()->json($message->getMessage(), 200);
             }
 
             $repositorie = Repository::where('id', $tag['repository_id'])
@@ -47,7 +47,7 @@ class TagDeleteProcessor
 
             return response()->json([
                 'message' => 'Ops, Algo deu errado tente novamente mais tarde!!!',
-            ], 400);
+            ], 500);
         }
     }
 

@@ -69,9 +69,9 @@ export default {
     return {
       mode: "save",
       user: {
-        name: null,
-        email: null,
-        password: null,
+        name: "",
+        email: "",
+        password: "",
       },
       users: [],
       fields: [
@@ -102,7 +102,7 @@ export default {
     save() {
       const method = this.user.id ? "put" : "post";
       const id = this.user.id ? `/updateUser/${this.user.id}` : "/createUser";
-
+      
       axios[method](`${baseApiUrl}/user${id}`, this.user)
         .then((res) => {
           const response = res.data.message;
