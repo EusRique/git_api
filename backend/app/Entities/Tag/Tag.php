@@ -11,8 +11,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $repository_id
  * @property integer $user_id
  * @property integer $id_tag_repository
+ * @property string $repositorie
  * @property string $tag_name
  * @property string $target_commitish
+ * @property string $token_git
  * @property string $login
  * @property string $body
  */
@@ -25,8 +27,10 @@ class Tag extends Model
         'repository_id',
         'user_id',
         'id_tag_repository',
+        'repositorie',
         'tag_name',
         'target_commitish',
+        'token_git',
         'login',
         'body',
     ];

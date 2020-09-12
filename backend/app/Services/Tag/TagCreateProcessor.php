@@ -72,7 +72,6 @@ class TagCreateProcessor
             'description' => $repositorie['description'],
             'language' => $repositorie['language'],
             'owner' => $repositorie['owner']['login'],
-            'token_git' => $this->requestData['token_git'],
             'url' => $repositorie['url'],
         ];
 
@@ -107,8 +106,10 @@ class TagCreateProcessor
             'repository_id' => $repositorie['id'],
             'user_id' => $userID,
             'id_tag_repository' => $tag['id'],
+            'repositorie' => $repositorie['title'],
             'tag_name' => $tag['tag_name'],
             'target_commitish' => $tag['target_commitish'],
+            'token_git' => $this->requestData['token_git'],
             'login' => $tag['author']['login'],
             'body' => $tag['body'],
         ];

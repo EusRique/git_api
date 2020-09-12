@@ -65,7 +65,7 @@ class TagUpdateProcessor
 
         $client = new Client();
         $response = $client->patch($urlRepository, [
-            'auth' => [$repositorie['owner'], $repositorie['token_git']],
+            'auth' => [$repositorie['owner'], $tag['token_git']],
             'json' => [
                 'tag_name' => $this->requestData['tag_name'],
                 'body' => $this->requestData['body'],

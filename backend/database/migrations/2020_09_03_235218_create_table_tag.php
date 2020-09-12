@@ -19,8 +19,10 @@ class CreateTableTag extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('id_tag_repository');
 
+            $table->string('repositorie');
             $table->string('tag_name');
             $table->string('target_commitish')->nullable();
+            $table->string('token_git');
             $table->string('login');
             $table->text('body');
             $table->timestamps();

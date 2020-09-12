@@ -39,7 +39,7 @@ class TagDeleteProcessor
                 ->first()
                 ->toArray();
 
-            $this->deleteTagGitAndTagLocal($repositorie);
+            $this->deleteTagGitAndTagLocal($repositorie, $tag);
 
             return response()->json(['message' => 'Tag excluída com sucesso'], 200);
 
@@ -51,14 +51,14 @@ class TagDeleteProcessor
         }
     }
 
-    private function deleteTagGitAndTagLocal(array $repositorie): void
+    private function deleteTagGitAndTagLocal(array $repositorie, array $tag ): void
     {
         $idTag = $this->requestData['id'];
         $urlRepository = self::REPOSITORIE_BASE_TAG . $repositorie['owner'] . '/' . $repositorie['title'] . self::REPOSITORIE_URL_TAG . $idTag;
 
         $client = new Client();
         $response = $client->delete($urlRepository, [
-            'auth' => [$repositorie['owner'], $repositorie['token_git']],
+            'auth' => [$repositorie['owner'], $tag['token_git']],
         ]);
 
         if ($response->getStatusCode() == 204) {

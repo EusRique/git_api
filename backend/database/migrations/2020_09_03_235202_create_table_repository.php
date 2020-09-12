@@ -21,7 +21,6 @@ class CreateTableRepository extends Migration
             $table->string('description')->nullable();
             $table->string('language')->nullable();
             $table->string('owner')->nullable();
-            $table->string('token_git');
             $table->string('url')->nullable();
             $table->timestamps();
         });

@@ -1,6 +1,6 @@
 <template>
   <div class="user-admin">
-    <h1>Usuários do Sistema</h1>
+    <h3>Usuários do Sistema</h3>
     <b-form>
       <input id="user-id" type="hidden" v-model="user.id" />
       <b-row>
@@ -102,7 +102,7 @@ export default {
     save() {
       const method = this.user.id ? "put" : "post";
       const id = this.user.id ? `/updateUser/${this.user.id}` : "/createUser";
-      
+
       axios[method](`${baseApiUrl}/user${id}`, this.user)
         .then((res) => {
           const response = res.data.message;

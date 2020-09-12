@@ -21,9 +21,9 @@
 
 <script>
 import PageTitle from "../templates/PageTitle";
-import UserAdmin from './UserAdmin'
-import TagAdmin from './TagAdmin'
-import ListTagsAdmin from './ListTagsAdmin'
+import UserAdmin from "./UserAdmin";
+import TagAdmin from "./TagAdmin";
+import ListTagsAdmin from "./ListTagsAdmin";
 
 export default {
   name: "AdminPages",

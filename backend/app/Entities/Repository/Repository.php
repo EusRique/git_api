@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property string $language
  * @property string $owner
- * @property string $token_git
  * @property string $url
  */
 
@@ -27,7 +26,6 @@ class Repository extends Model
         'description',
         'language',
         'owner',
-        'token_git',
         'url',
     ];
 }

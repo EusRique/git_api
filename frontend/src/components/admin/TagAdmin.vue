@@ -72,9 +72,7 @@
               placeholder="Informe o nome da TAG"
             />
           </b-form-group>
-          <b-button variant="success" @click="save">
-            Criar TAG
-          </b-button>
+          <b-button variant="success" @click="save">Criar TAG</b-button>
           <b-button class="ml-2" @click="reset">Cancelar</b-button>
         </b-form>
       </div>
@@ -147,7 +145,8 @@ export default {
 
     save() {
       this.loading = true;
-      axios.post(`${baseApiUrl}/tag/createTag`, this.tag)
+      axios
+        .post(`${baseApiUrl}/tag/createTag`, this.tag)
         .then((res) => {
           this.$toasted.global.defaultSuccess(res.data.message);
           this.loading = false;
@@ -160,14 +159,14 @@ export default {
     },
 
     reset() {
-      this.tag = {}
-    }
-  }
+      this.tag = {};
+    },
+  },
 };
 </script>
 
 <style>
-  .form-tag {
-    margin-bottom: 15px;
-  }
+.form-tag {
+  margin-bottom: 15px;
+}
 </style>

@@ -17,8 +17,6 @@ class TagListProcessor
     {
         $listTag = auth('api')->user()->tag();
 
-        dd($listTag);
-
         return response()->json($listTag->paginate(10), 200);
     }
 }
