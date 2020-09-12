@@ -21,7 +21,7 @@ class UserCreateProcessor
         if (!$this->requestData['name'] || !$this->requestData['email'] || !$this->requestData['password']) {
             $message = new ApiMessages('Ops, verifique os campos obrigatórios!!!');
 
-            return response()->json($message->getMessage(), 401);
+            return response()->json($message->getMessage(), 400);
         }
 
         try {
