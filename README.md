@@ -58,3 +58,20 @@ Iniciar o front
 8. [Lista tags cadastradas no repositórios](requirements/load-tag.md)
 9. [Atualiza tags cadastradas no repositórios](requirements/update-tag.md)
 10. [Remove tags cadastradas no repositórios](requirements/remove-tag.md)
+
+
+Checklist Backend:
+---
+
+- [x] PHP 7+ (Puro ou ​ um​ Framework);
+- [x] MVCS;
+- [ ] Factory (Não deu tempo);
+- [x] Dependency Injection;
+- [x] DDD;
+
+Checklist Frontend:
+---
+
+- [x] CSS3;
+- [x] HTML 5;
+- [x] Vue.js 2+;
