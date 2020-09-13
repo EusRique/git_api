@@ -58,8 +58,7 @@ class TagCreateProcessor
 
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Ops, Algo deu errado, verifique se todas as informações estão corretas e
-                se já existe uma tag com esse nome!!!',
+                'message' => 'Ops, Algo deu errado, verifique se todas as informações estão corretas e se já existe uma tag com esse nome!!!',
             ], 400);
         }
     }

@@ -54,3 +54,7 @@ Iniciar o front
 4. [Atualização de usuário](requirements/updateUser.md)
 5. [Carrega todos os usuários](requirements/load-user.md)
 6. [Carrega lista de repositórios](requirements/search-repositorie.md)
+7. [Criar tag no repositórios](requirements/create-tag.md)
+8. [Lista tags cadastradas no repositórios](requirements/load-tag.md)
+9. [Atualiza tags cadastradas no repositórios](requirements/update-tag.md)
+10. [Remove tags cadastradas no repositórios](requirements/remove-tag.md)

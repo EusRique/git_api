@@ -34,13 +34,12 @@ class TagUpdateProcessor
         try {
 
             $tag = Tag::where('id_tag_repository', $this->id['id'])
-                ->first()
-                ->toArray();
+                ->first();
 
             if (empty($tag)) {
                 $message = new ApiMessages('Ops, nenhum registro encontrado!!!');
 
-                return response()->json($message->getMessage(), 200);
+                return response()->json($message->getMessage(), 403);
             }
 
             $repositorie = Repository::where('id', $tag['repository_id'])
@@ -59,7 +58,7 @@ class TagUpdateProcessor
         }
     }
 
-    public function updateTagGitAndLocal(array $tag, array $repositorie): void
+    public function updateTagGitAndLocal(Tag $tag, array $repositorie): void
     {
         $urlRepository = self::REPOSITORIE_BASE_TAG . $repositorie['owner'] . '/' . $repositorie['title'] . self::REPOSITORIE_URL_TAG . $tag['id_tag_repository'];
 
@@ -73,10 +72,8 @@ class TagUpdateProcessor
         ]);
 
         if ($response->getStatusCode() == 200) {
-            $this->tag->findOrFail($tag['id'])
-                ->first()
-                ->fill($this->requestData)
-                ->save();
+            $tagRepo = Tag::where('id', $tag['id']);
+            $tagRepo->update($this->requestData);
         }
     }
 }

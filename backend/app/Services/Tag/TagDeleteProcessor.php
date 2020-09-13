@@ -26,13 +26,12 @@ class TagDeleteProcessor
         try {
 
             $tag = Tag::where('id_tag_repository', $this->requestData['id'])
-                ->first()
-                ->toArray();
+                ->first();
 
             if (empty($tag)) {
                 $message = new ApiMessages('Ops, nenhum registro encontrado!!!');
 
-                return response()->json($message->getMessage(), 200);
+                return response()->json($message->getMessage(), 403);
             }
 
             $repositorie = Repository::where('id', $tag['repository_id'])
@@ -51,7 +50,7 @@ class TagDeleteProcessor
         }
     }
 
-    private function deleteTagGitAndTagLocal(array $repositorie, array $tag ): void
+    private function deleteTagGitAndTagLocal(array $repositorie, Tag $tag ): void
     {
         $idTag = $this->requestData['id'];
         $urlRepository = self::REPOSITORIE_BASE_TAG . $repositorie['owner'] . '/' . $repositorie['title'] . self::REPOSITORIE_URL_TAG . $idTag;
