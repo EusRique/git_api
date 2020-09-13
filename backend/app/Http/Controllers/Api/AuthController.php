@@ -2,31 +2,51 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use App\Api\ApiMessages;
 
 class AuthController extends Controller
 {
-    public function __construct()
+    protected $request;
+
+    public function __construct(Request $request)
     {
+        $this->request = $request;
         $this->middleware('auth:api', ['except' => ['login']]);
     }
 
     public function login()
+
     {
-        $credentials = request(['email', 'password']);
+        if (!$this->request['email'] || !$this->request['password']) {
+            $message = new ApiMessages('Ops, verifique os campos obrigatórios!!!');
 
-        Validator::make($credentials, [
-            'email' => 'required|string',
-            'password' => 'required|string'
-        ])->validate();
-
-        if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Invalid email or password'], 401);
+            return response()->json($message->getMessage(), 400);
         }
 
-        return $this->respondWithToken($token);
+        try {
+            $credentials = request(['email', 'password']);
+
+            Validator::make($credentials, [
+                'email' => 'required|string',
+                'password' => 'required|string'
+            ])->validate();
+
+            if (! $token = auth()->attempt($credentials)) {
+                return response()->json(['error' => 'Ops, email ou password inválidos!!!'], 401);
+            }
+
+            return $this->respondWithToken($token);
+        } catch (\Exception $e) {
+            $message = new ApiMessages($e->getMessage());
+
+            return response()->json([
+                'message' => 'Ops, algo deu errado!'
+            ], 500);
+        }
     }
 
     public function me()
@@ -38,7 +58,7 @@ class AuthController extends Controller
     {
         auth('api')->logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return response()->json(['message' => 'Até a próxima!!!']);
     }
 
     public function refresh()

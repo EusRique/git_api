@@ -16,6 +16,12 @@ class UpdateUserProcessor
 
     public function updateUser()
     {
+        if (!$this->requestData['name'] || !$this->requestData['email'] || !$this->requestData['password']) {
+            $message = new ApiMessages('Ops, verifique os campos obrigatórios!!!');
+
+            return response()->json($message->getMessage(), 403);
+        }
+
         try {
             if ($this->requestData['password']) {
                 $this->requestData['password'] = bcrypt($this->requestData['password']);
@@ -24,10 +30,20 @@ class UpdateUserProcessor
             }
 
             $idUser = $this->id;
+            $userId = User::where('id', $idUser['id'])
+                ->first();
+
+            if (empty($userId)) {
+                $message = new ApiMessages('Ops, Não encontramos o usuário!!!');
+
+                return response()->json($message->getMessage(), 403);
+            }
+
             $user = $this->user->findOrFail($idUser)
                 ->first()
                 ->fill($this->requestData)
                 ->save();
+
 
             return response()->json([
                 'data' => [
@@ -38,7 +54,9 @@ class UpdateUserProcessor
         } catch (\Exception $e) {
             $message = new ApiMessages($e->getMessage());
 
-            return response()->json(['message' => 'Ops, algo deu errado, verifique todos os campos obrigatórios!'], 400);
+            return response()->json([
+                'message' => 'Ops, algo deu errado, verifique todos os campos obrigatórios!'
+            ], 400);
         }
     }
 }

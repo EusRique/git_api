@@ -25,9 +25,15 @@ class UserCreateProcessor
         }
 
         try {
+
+            if (User::where('email', $this->requestData['email'])->exists()) {
+                $message = new ApiMessages('Ops, já existe um cadastro com esse email!!!');
+                return response()->json($message->getMessage(), 403);
+            }
+
             $this->requestData['password'] = bcrypt($this->requestData['password']);
 
-            $user = $this->user->create($this->requestData);
+            $user = $this->user->firstOrCreate($this->requestData);
 
             return response()->json([
                 'data' => [
@@ -38,7 +44,9 @@ class UserCreateProcessor
         } catch (\Exception $e) {
             $message = new ApiMessages($e->getMessage());
 
-            return response()->json($message->getMessage(), 500);
+            return response()->json([
+                'message' => 'Ops, algo deu errado, verifique todos os campos obrigatórios!'
+            ], 400);
         }
     }
 }

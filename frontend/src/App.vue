@@ -12,8 +12,7 @@
 </template>
 
 <script>
-import axios from "axios"
-import { baseApiUrl, userKey } from "@/global"
+import { userKey } from "@/global"
 import { mapState } from 'vuex'
 import Header from "@/components/templates/Header"
 import Menu from "@/components/templates/Menu"

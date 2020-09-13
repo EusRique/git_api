@@ -34,8 +34,8 @@ class TagUpdateProcessor
         try {
 
             $tag = Tag::where('id_tag_repository', $this->id['id'])
-            ->first()
-            ->toArray();
+                ->first()
+                ->toArray();
 
             if (empty($tag)) {
                 $message = new ApiMessages('Ops, nenhum registro encontrado!!!');
