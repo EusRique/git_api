@@ -33,7 +33,7 @@ Migrations
 
 ## **Importante**
 Iniciar a API, ficara disponivel no caminho http://127.0.0.1:8000 caso o caminho seja diferente você vai precisar alterar no projeto do front.
-Path: **git_api/frontend/src/global.js**
+Path: **madeiramadeira/frontend/src/global.js**
 
 ```php artisan serve```
 

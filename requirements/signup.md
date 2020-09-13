@@ -39,7 +39,7 @@ O Retorno é um token para continuar para as outras rotas que precisam de autent
 
 ```
 {
-  "accessToken": "string"
+  "accessToken": "doasdposkdposiapodisapodoiahsudha"
 }
 
 ```
