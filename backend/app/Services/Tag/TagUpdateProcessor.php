@@ -48,7 +48,9 @@ class TagUpdateProcessor
 
             $this->updateTagGitAndLocal($tag, $repositorie);
 
-            return response()->json(['message' => 'Tag Atualizada com sucesso'], 200);
+            return response()->json([
+                'message' => 'Tag Atualizada com sucesso'
+            ], 200);
 
         } catch (\Exception $e) {
 

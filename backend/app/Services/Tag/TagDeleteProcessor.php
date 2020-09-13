@@ -40,7 +40,9 @@ class TagDeleteProcessor
 
             $this->deleteTagGitAndTagLocal($repositorie, $tag);
 
-            return response()->json(['message' => 'Tag excluída com sucesso'], 200);
+            return response()->json([
+                'message' => 'Tag excluída com sucesso'
+            ], 200);
 
         } catch (\Exception $e) {
 

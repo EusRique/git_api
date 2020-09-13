@@ -36,7 +36,9 @@ class AuthController extends Controller
             ])->validate();
 
             if (! $token = auth()->attempt($credentials)) {
-                return response()->json(['error' => 'Ops, email ou password inválidos!!!'], 401);
+                return response()->json([
+                    'error' => 'Ops, email ou password inválidos!!!'
+                ], 401);
             }
 
             return $this->respondWithToken($token);
@@ -58,7 +60,9 @@ class AuthController extends Controller
     {
         auth('api')->logout();
 
-        return response()->json(['message' => 'Até a próxima!!!']);
+        return response()->json([
+            'message' => 'Até a próxima!!!'
+        ]);
     }
 
     public function refresh()
