@@ -1,6 +1,7 @@
 <template>
 	<div id="app" :class="{'hide-menu': !isMenuVisible || !user}">
-		<Header title="Skyfall" 
+		<Header v-if="user"
+			title="Skyfall" 
 			:hideToggle="!user"
 			:hideUserDropdown="!user"
 		/>
@@ -22,7 +23,7 @@ import Loading from "@/components/templates/Loading"
 
 export default {
 	name: "App",
-	components: { Header, Menu, Content, Footer, Loading },
+	components: { Header, Menu, Content, Loading, Footer },
 	computed: mapState(['isMenuVisible', 'user']),
 
 	data: function() {
@@ -79,20 +80,15 @@ export default {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 
+		background: #FFF;
+
 		height: 100vh;
 		display: grid;
 		grid-template-rows: 60px 1fr 40px;
-		grid-template-columns: 300px 1fr;
+		grid-template-columns: 200px 1fr;
 		grid-template-areas: 
-			"header header"
+			"menu header"
 			"menu content"
-			"menu footer";
-	}
-
-	#app.hide-menu {
-		grid-template-areas: 
-			"header header"
-			"content content"
-			"footer footer";
+			"footer footer"
 	}
 </style>

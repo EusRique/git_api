@@ -1,9 +1,6 @@
 <template>
   <header class="header">
-    <a class="toggle" @click="toggleMenu" v-if="!hideToggle">
-      <i class="fa fa-lg" :class="icon"></i>
-    </a>
-    <h1 class="title">
+    <h1 class="title-header">
       <router-link to="/">{{ title }}</router-link>
     </h1>
     <UserDropdown v-if="!hideUserDropdown" />
@@ -19,19 +16,12 @@ export default {
 
   props: {
     title: String,
-    hideToggle: Boolean,
     hideUserDropdown: Boolean
   },
 
   computed: {
     icon() {
       return this.$store.state.isMenuVisible ? "fa-angle-left" : "fa-angle-down" 
-    }
-  },
-
-  methods: {
-    toggleMenu() {
-      this.$store.commit('toggleMenu')
     }
   }
 };
@@ -40,27 +30,30 @@ export default {
 <style>
   .header {
     grid-area: header;
-    background: linear-gradient(to right, #1e469a, #49a7c1);
+    background: #FFF;
+    /* margin-top: 80px;
+    margin-bottom: 30px; */
+
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .title {
+  .title-header {
     font-size: 1.5rem;
-    color: #fff;
+    color: #000;
     font-weight: 100;
     flex-grow: 1;
     text-align: center;
   }
 
-  .title a {
-    color: #fff;
+  .title-header a {
+    color: #000;
     text-decoration: none;
   }
 
-  .title a:hover {
-    color: #fff;
+  .title-header a:hover {
+    color: #000;
     text-decoration: none;
   }
 

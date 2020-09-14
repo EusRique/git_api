@@ -75,7 +75,7 @@ export default {
   background-color: #fff;
   width: 350px;
   padding: 35px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 1.15);
 
   display: flex;
   flex-direction: column;
